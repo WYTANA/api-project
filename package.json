@@ -1,0 +1,13 @@
+{
+  "name": "api-project",
+  "version": "1.0.0",
+  "description": "API project",
+  "main": "app.js",
+  "scripts": {},
+  "author": "tlorback@protonmail.com",
+  "license": "ISC",
+  "private": true,
+  "dependencies": {
+    "express": "4.17.3"
+  }
+}
