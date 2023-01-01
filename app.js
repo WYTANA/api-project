@@ -1,20 +1,36 @@
 const fs = require("fs")
 const express = require("express")
+const morgan = require("morgan")
 
-// Use express
+// Set express to a variable
 const app = express()
 
-// Use middleware
+// Use global middleware - applies to each request
+app.use(morgan("dev"))
+
 app.use(express.json())
 
+app.use((req, res, next) => {
+  console.log("Hello from middleware!")
+  next()
+})
+
+app.use((req, res, next) => {
+  req.requestTime = new Date().toISOString()
+  next()
+})
+
+// ************************************************************************
 const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
 )
 
-// Route Handlers
+// Route Handler functions
 const getAllTours = (req, res) => {
+  console.log(req.requestTime)
   res.status(200).json({
     status: "success",
+    requestedAt: req.requestTime,
     results: tours.length,
     data: {
       tours,
@@ -102,6 +118,7 @@ const deleteTour = (req, res) => {
 // // DELETE (not full implementation)
 // app.delete("api/v1/tours/:id", deleteTour)
 
+// Routes
 app.route("/api/v1/tours").get(getAllTours).post(createTour)
 app.route("/api/v1/tours/:id").get(getTour).patch(updateTour).delete(deleteTour)
 
