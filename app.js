@@ -107,20 +107,43 @@ const deleteTour = (req, res) => {
   })
 }
 
-// // GET
-// app.get("/api/v1/tours", getAllTours)
-// // GET parameter
-// app.get("/api/v1/tours/:id", getTour)
-// // POST
-// app.post("/api/v1/tours", createTour)
-// // PATCH (not full implementation)
-// app.patch("api/v1/tours/:id", updateTour)
-// // DELETE (not full implementation)
-// app.delete("api/v1/tours/:id", deleteTour)
+const getAllUsers = (req, res) => {
+  res.status(500).json({
+    status: "error",
+    message: "Undefined route!",
+  })
+}
+const getUser = (req, res) => {
+  res.status(500).json({
+    status: "error",
+    message: "Undefined route!",
+  })
+}
+const createUser = (req, res) => {
+  res.status(500).json({
+    status: "error",
+    message: "Undefined route!",
+  })
+}
+const updateUser = (req, res) => {
+  res.status(500).json({
+    status: "error",
+    message: "Undefined route!",
+  })
+}
+const deleteUser = (req, res) => {
+  res.status(500).json({
+    status: "error",
+    message: "Undefined route!",
+  })
+}
 
 // Routes
 app.route("/api/v1/tours").get(getAllTours).post(createTour)
 app.route("/api/v1/tours/:id").get(getTour).patch(updateTour).delete(deleteTour)
+
+app.route("/api/v1/users").get(getAllUsers).post(createUser)
+app.route("/api/v1/users/:id").get(getUser).patch(updateUser).delete(deleteUser)
 
 // Serve the data
 const port = 3000
