@@ -5,7 +5,7 @@ const morgan = require("morgan")
 // Set express to a variable
 const app = express()
 
-// Use global middleware - applies to each request
+// Use global middleware
 app.use(morgan("dev"))
 
 app.use(express.json())
@@ -113,24 +113,28 @@ const getAllUsers = (req, res) => {
     message: "Undefined route!",
   })
 }
+
 const getUser = (req, res) => {
   res.status(500).json({
     status: "error",
     message: "Undefined route!",
   })
 }
+
 const createUser = (req, res) => {
   res.status(500).json({
     status: "error",
     message: "Undefined route!",
   })
 }
+
 const updateUser = (req, res) => {
   res.status(500).json({
     status: "error",
     message: "Undefined route!",
   })
 }
+
 const deleteUser = (req, res) => {
   res.status(500).json({
     status: "error",
@@ -139,11 +143,17 @@ const deleteUser = (req, res) => {
 }
 
 // Routes
-app.route("/api/v1/tours").get(getAllTours).post(createTour)
-app.route("/api/v1/tours/:id").get(getTour).patch(updateTour).delete(deleteTour)
+const tourRouter = express.Router()
+const userRouter = express.Router()
 
-app.route("/api/v1/users").get(getAllUsers).post(createUser)
-app.route("/api/v1/users/:id").get(getUser).patch(updateUser).delete(deleteUser)
+tourRouter.route("/").get(getAllTours).post(createTour)
+tourRouter.route("/:id").get(getTour).patch(updateTour).delete(deleteTour)
+
+userRouter.route("/").get(getAllUsers).post(createUser)
+userRouter.route("/:id").get(getUser).patch(updateUser).delete(deleteUser)
+
+app.use("/api/v1/tours", tourRouter)
+app.use("/api/v1/users", userRouter)
 
 // Serve the data
 const port = 3000
