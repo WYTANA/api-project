@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "API project",
   "main": "app.js",
-  "scripts": {},
+  "scripts": {
+    "start": "nodemon server.js"
+  },
   "author": "tlorback@protonmail.com",
   "license": "ISC",
   "private": true,
