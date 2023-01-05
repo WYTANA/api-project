@@ -20,6 +20,7 @@ mongoose
     console.log("DB connected!")
   })
 
+// Create schema
 const toursSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -36,7 +37,24 @@ const toursSchema = new mongoose.Schema({
   },
 })
 
+// Create model/collection
 const Tour = mongoose.model("Tour", toursSchema)
+
+// Create document (instance of Tour model)
+const testTour = new Tour({
+  name: "The Park Camper",
+  // rating: 4.7,
+  price: 997,
+})
+
+testTour
+  .save()
+  .then((doc) => {
+    console.log(doc)
+  })
+  .catch((err) => {
+    console.log("ERROR:", err)
+  })
 
 const app = require("./app")
 
