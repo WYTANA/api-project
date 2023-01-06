@@ -3,9 +3,10 @@ const tourController = require("../controllers/tourController")
 
 const router = express.Router()
 
-router.param("id", tourController.checkId)
-router.param("name", tourController.checkBody)
-router.param("price", tourController.checkBody)
+// Custom defined middleware
+// router.param("id", tourController.checkId)
+// router.param("name", tourController.checkBody)
+// router.param("price", tourController.checkBody)
 
 router
   .route("/")
